@@ -14,14 +14,41 @@ def ClearTerminal():
 def DrawLine(char):
    for i in range(columns):
         print(char, end = "")
-   print()
+   print()    
 
-def CenterAlignedText(text):
-   length = len(text)
-   n = int((columns - length)/2)
-   print(" " * n, end = "", flush  = True)
-   print(text)
+def SkipLines(lines):
+   print("\n"*lines)
 
+
+def CentreAlignText(text):
+      length = len(text)
+      n = int((columns - length)/2)
+      print(" " * n, end = "", flush  = True)
+      print(text)
+
+def CustomAlignText(n, text):
+      print(" " * n, end = "", flush  = True)
+      print(text)
+
+def WriteHeading(text):
+    CentreAlignText("-"*len(text))
+    CentreAlignText(text)
+    CentreAlignText("-"*len(text))
+
+def LengthOfList(list):
+    sum = 0
+    for i in list:
+        sum += len(i)
+    return sum
+
+def PrintList(list, gap, n):
+    print(" "*n, end = "")
+    for i in list:
+        if gap:
+            print(i, end = "")
+            print(" "*gap, end = "")
+        else:
+            print(i)
 
 ## main functions
 def wait(seconds): 
@@ -39,7 +66,51 @@ def TypeWriterEffect(text):
 def DrawFrame():
    ClearTerminal()
    DrawLine('=')
-   CenterAlignedText("THE GAUNTLET")
+   CentreAlignText("THE GAUNTLET")
    DrawLine('=')
    print()
 
+def ShowPlayerStats(plr):
+   WriteHeading(plr.Name)
+   n = int((columns - len(plr.Name))/2)
+   CustomAlignText(n, "Health = " + str(plr.Health))
+   CustomAlignText(n, "Light Attack = " + str(plr.L_Attack))
+   CustomAlignText(n, "Heavy Attack = " + str(plr.H_Attack))
+   CustomAlignText(n, "Stamina = " + str(plr.Stamina))
+
+def ShowPlayerStats(plr):
+    WriteHeading(plr.Name)
+    gap = 2   
+    Attributes = ["HEALTH: "+str(plr.Health), "MANA: "+str(plr.Mana), "STAMINA: "+str(plr.Stamina)]
+    Attacks = ["LIGHT ATTACK: "+str(plr.L_Attack), "HEAVY ATTACK: "+str(plr.H_Attack)]
+    n_Attributes = int((columns-(LengthOfList(Attributes)+len(Attributes)*gap))/2)
+    n_Attacks = int((columns-(LengthOfList(Attacks)+len(Attacks)*gap))/2)
+    PrintList(Attributes, gap, n_Attributes)
+    print()
+    PrintList(Attacks, gap, n_Attacks)
+
+def Pause():
+   print("\n")
+   CentreAlignText("Enter to continue...")
+   input()
+
+def InputName(plr):
+    text = "Enter Your Name: "
+    length = len(text)
+    n = int((columns - length)/2)
+    print(" " * n, end = "", flush  = True)
+    print(text, end = "")
+    name = str(input())
+    plr.Name = name
+
+def ChooseInput(text = "Enter Choice: ", Range = [1]):
+    print()
+    print("\033[999B", end="")
+    Option = ""
+    while Option not in Range :
+         Option = int(input(text))
+         if Option not in Range:
+             print("Invalid Input")
+
+    return Option
+         
