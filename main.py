@@ -2,10 +2,9 @@ from functions import TypeWriterEffect
 from functions import wait
 from functions import DrawFrame
 from functions import ShowPlayerStats
-from functions import SkipLines
-from functions import Pause
 from functions import InputName
 from functions import ChooseInput
+from functions import Choice
 
 #importing classes
 from entities import player
@@ -17,5 +16,9 @@ DrawFrame()
 InputName(plr)
 DrawFrame()
 ShowPlayerStats(plr)
-print(ChooseInput("Enter 1 To Continue: ", [1]))
+ChooseInput([1], "Enter 1 To Continue: ")
+DrawFrame()
+Choice(["Enter Forest", "Enter Cave"])
+
+
 

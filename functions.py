@@ -89,11 +89,6 @@ def ShowPlayerStats(plr):
     print()
     PrintList(Attacks, gap, n_Attacks)
 
-def Pause():
-   print("\n")
-   CentreAlignText("Enter to continue...")
-   input()
-
 def InputName(plr):
     text = "Enter Your Name: "
     length = len(text)
@@ -103,7 +98,7 @@ def InputName(plr):
     name = str(input())
     plr.Name = name
 
-def ChooseInput(text = "Enter Choice: ", Range = [1]):
+def ChooseInput(Range = [1] ,text = "Enter Choice: "):
     print()
     print("\033[999B", end="")
     Option = ""
@@ -113,4 +108,25 @@ def ChooseInput(text = "Enter Choice: ", Range = [1]):
              print("Invalid Input")
 
     return Option
+
+def ChooseInput(Range = [1] ,text = "Enter Choice: "):
+    print()
+    print("\033[999B", end="")
+    Option = ""
+    while Option not in Range:
+        try:
+            Option = int(input(text))
+        except ValueError:
+            print("Invalid Input")
+            continue
+
+        if Option not in Range:
+            print("Invalid Input")
+
+    return Option
          
+def Choice(options):
+    for i, v in enumerate(options):
+        CentreAlignText(v + "["+str(i+1)+"]")
+    return ChooseInput(list(range(1,len(options)+1)))
+    
