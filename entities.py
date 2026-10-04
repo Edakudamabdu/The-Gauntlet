@@ -11,6 +11,10 @@ class player(entity):
         super().__init__(100)
 
         self.Name = "Player 1"
+
+        self.Location = "Lobby"
+        self.P_Location = ""
+
         self.L_Attack = 10
         self.H_Attack = 25
         self.Stamina = 100

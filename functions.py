@@ -26,6 +26,12 @@ def CentreAlignText(text):
       print(" " * n, end = "", flush  = True)
       print(text)
 
+def CentreAlignTypewriter(text):
+    length = len(text)
+    n = int((columns - length)/2)
+    print(" " * n, end = "", flush  = True)
+    TypeWriterEffect(text)
+
 def CustomAlignText(n, text):
       print(" " * n, end = "", flush  = True)
       print(text)
@@ -125,8 +131,31 @@ def ChooseInput(Range = [1] ,text = "Enter Choice: "):
 
     return Option
          
-def Choice(options):
-    for i, v in enumerate(options):
-        CentreAlignText(v + "["+str(i+1)+"]")
-    return ChooseInput(list(range(1,len(options)+1)))
-    
+class Choice:
+    def Choose(options):
+        for i, v in enumerate(options):
+                CentreAlignText(v + "["+str(i+1)+"]")
+        return ChooseInput(list(range(1,len(options)+1)))
+
+def EnterScene(SceneName, plr):
+    DrawFrame()
+    CentreAlignTypewriter("You Have Entered the " + SceneName + "...")
+    plr.Location = SceneName
+    wait(0.2)
+
+def Walk(plr,Scenes):
+    options = []
+    Scene = Scenes[plr.Location]
+    for i in Scene.links:
+        if plr.P_Location == i.name:
+            options.append("Return to " + i.name)
+        else:
+            options.append("Enter " + i.name)
+
+    c = Choice.Choose(options)
+    NewScene = Scene.links[c-1].name
+    plr.P_Location = plr.Location
+    plr.Location = NewScene
+    EnterScene(NewScene, plr)
+
+
