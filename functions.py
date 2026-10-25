@@ -104,16 +104,6 @@ def InputName(plr):
     name = str(input())
     plr.Name = name
 
-def ChooseInput(Range = [1] ,text = "Enter Choice: "):
-    print()
-    print("\033[999B", end="")
-    Option = ""
-    while Option not in Range :
-         Option = int(input(text))
-         if Option not in Range:
-             print("Invalid Input")
-
-    return Option
 
 def ChooseInput(Range = [1] ,text = "Enter Choice: "):
     print()
