@@ -155,6 +155,19 @@ def Advance(plr):
     DrawFrame(plr.Location)
 
 
+#SceneQuests
+def BridgeQuest():
+    answer = str(input("Enter your Answer: "))
+    if answer.upper() == "MAP":
+        return True
+    else:
+        return False
+    
+def CaveQuest():
+    pass
+
+
+
 
 
 
