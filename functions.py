@@ -62,18 +62,20 @@ def wait(seconds):
 
 def TypeWriterEffect(text):
   for i in text:
-     if i == '.':
+     print(i, end = "", flush  = True)
+     if i == '.' or i == ',':
         wait(0.7)
      else:
         wait(0.05)
-     print(i, end = "", flush  = True)
   print()
 
-def DrawFrame():
+def DrawFrame(loc = ""):
    ClearTerminal()
    DrawLine('=')
    CentreAlignText("THE GAUNTLET")
    DrawLine('=')
+   if loc!="":
+       CentreAlignText(loc)
    print()
 
 def ShowPlayerStats(plr):
@@ -104,7 +106,6 @@ def InputName(plr):
     name = str(input())
     plr.Name = name
 
-
 def ChooseInput(Range = [1] ,text = "Enter Choice: "):
     print()
     print("\033[999B", end="")
@@ -129,7 +130,7 @@ class Choice:
 
 def EnterScene(SceneName, plr):
     DrawFrame()
-    CentreAlignTypewriter("You Have Entered the " + SceneName + "...")
+    CentreAlignTypewriter("You Entered the " + SceneName + "...")
     plr.Location = SceneName
     wait(0.2)
 
@@ -147,5 +148,13 @@ def Walk(plr,Scenes):
     plr.P_Location = plr.Location
     plr.Location = NewScene
     EnterScene(NewScene, plr)
+
+
+def Advance(plr):
+    ChooseInput([1], "Enter 1 To Continue: ")
+    DrawFrame(plr.Location)
+
+
+
 
 
