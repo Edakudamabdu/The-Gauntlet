@@ -22,8 +22,10 @@ class player(entity):
 
 # enemy class skeletal
 class enemy(entity):
-    def __init__(self, MaxHealth, Damage):
+    def __init__(self, Name, MaxHealth, Damage):
 
         super().__init__(MaxHealth)
-
+        
+        self.Name = Name
         self.Damage = Damage
+        
