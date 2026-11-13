@@ -64,9 +64,9 @@ def TypeWriterEffect(text):
   for i in text:
      print(i, end = "", flush  = True)
      if i == '.' or i == ',':
-        wait(0.7)
+        wait(0.2)
      else:
-        wait(0.05)
+        wait(0.01)
   print()
 
 def DrawFrame(loc = ""):
@@ -79,14 +79,6 @@ def DrawFrame(loc = ""):
    print()
 
 def ShowPlayerStats(plr):
-   WriteHeading(plr.Name)
-   n = int((columns - len(plr.Name))/2)
-   CustomAlignText(n, "Health = " + str(plr.Health))
-   CustomAlignText(n, "Light Attack = " + str(plr.L_Attack))
-   CustomAlignText(n, "Heavy Attack = " + str(plr.H_Attack))
-   CustomAlignText(n, "Stamina = " + str(plr.Stamina))
-
-def ShowPlayerStats(plr):
     WriteHeading(plr.Name)
     gap = 2   
     Attributes = ["HEALTH: "+str(plr.Health), "MANA: "+str(plr.Mana), "STAMINA: "+str(plr.Stamina)]
@@ -96,6 +88,12 @@ def ShowPlayerStats(plr):
     PrintList(Attributes, gap, n_Attributes)
     print()
     PrintList(Attacks, gap, n_Attacks)
+
+def ShowEnemyStats(enemies):
+    for i in enemies:
+        CentreAlignText(i.Name)
+        CentreAlignText(i.Health)
+
 
 def InputName(plr):
     text = "Enter Your Name: "
@@ -165,8 +163,6 @@ def BridgeQuest():
     
 def CaveQuest():
     pass
-
-
 
 
 
